@@ -44,6 +44,10 @@ services:
       DATABASE_USER: ${DATABASE_USER:-meeting_user}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD:-meeting_password}
       REDIS_URL: redis://redis:6379/0
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-development-only-change-me-before-production}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      JWT_ACCESS_TOKEN_EXPIRE_MINUTES: ${JWT_ACCESS_TOKEN_EXPIRE_MINUTES:-30}
+      JWT_REFRESH_TOKEN_EXPIRE_DAYS: ${JWT_REFRESH_TOKEN_EXPIRE_DAYS:-7}
     depends_on:
       mysql:
         condition: service_healthy

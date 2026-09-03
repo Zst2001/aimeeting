@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import { getBackendHealth } from '@/api/client'
+import { useAuthStore } from '@/stores/auth'
 
 const backendStatus = ref<'checking' | 'ok' | 'error'>('checking')
+const loggingOut = ref(false)
+const authStore = useAuthStore()
+const router = useRouter()
+const currentUser = computed(() => authStore.user)
 
 async function refreshBackendStatus(): Promise<void> {
   backendStatus.value = 'checking'
@@ -16,13 +22,28 @@ async function refreshBackendStatus(): Promise<void> {
 }
 
 onMounted(refreshBackendStatus)
+
+async function logout(): Promise<void> {
+  loggingOut.value = true
+  try {
+    await authStore.logout()
+  } finally {
+    loggingOut.value = false
+    await router.replace({ name: 'login' })
+  }
+}
 </script>
 
 <template>
   <main class="home-page">
     <el-card class="status-card" shadow="never">
       <h1>AI 智能会议纪要系统</h1>
-      <p>Phase 1 Task 1：基础工程与健康检查。</p>
+      <p>欢迎，{{ currentUser?.display_name }}</p>
+      <dl class="user-details">
+        <div><dt>用户名</dt><dd>{{ currentUser?.username }}</dd></div>
+        <div><dt>角色</dt><dd>{{ currentUser?.role }}</dd></div>
+      </dl>
+      <el-button type="danger" plain :loading="loggingOut" @click="logout">退出登录</el-button>
       <el-divider />
       <div class="status-row">
         <span>Backend Status</span>
@@ -52,5 +73,24 @@ onMounted(refreshBackendStatus)
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.user-details {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.user-details div {
+  display: flex;
+  gap: 12px;
+}
+
+dt {
+  color: #909399;
+}
+
+dd {
+  margin: 0;
 }
 </style>

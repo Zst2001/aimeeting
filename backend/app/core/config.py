@@ -33,6 +33,13 @@ class Settings(BaseSettings):
 
     redis_url: str = "redis://localhost:6379/0"
 
+    # A real value must be supplied by the deployment environment.  Keeping the
+    # default empty avoids embedding a usable secret in application source.
+    jwt_secret_key: str = ""
+    jwt_algorithm: str = "HS256"
+    jwt_access_token_expire_minutes: int = 30
+    jwt_refresh_token_expire_days: int = 7
+
     @property
     def database_url(self) -> str:
         user = quote_plus(self.database_user)

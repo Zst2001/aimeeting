@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 
 const backendProxyTarget = process.env.VITE_BACKEND_PROXY_TARGET ?? 'http://localhost:8000'
@@ -19,5 +19,9 @@ export default defineConfig({
       '/ready': { target: backendProxyTarget },
       '/api': { target: backendProxyTarget },
     },
+  },
+  test: {
+    environment: 'jsdom',
+    clearMocks: true,
   },
 })
