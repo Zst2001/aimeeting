@@ -2,6 +2,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db.models.user import User, UserRole, UserStatus
+from app.utils.datetime import utc_now
 
 
 class UserRepository:
@@ -43,5 +44,10 @@ class UserRepository:
             status=status.value,
         )
         self.session.add(user)
+        self.session.flush()
+        return user
+
+    def update_last_login(self, user: User) -> User:
+        user.last_login_at = utc_now()
         self.session.flush()
         return user
