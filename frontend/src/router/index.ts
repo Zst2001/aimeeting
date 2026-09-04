@@ -3,7 +3,8 @@ import { createRouter, createWebHistory, type Router } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 export { getSafeRedirectPath } from '@/utils/navigation'
 import LoginView from '@/views/auth/LoginView.vue'
-import HomeView from '@/views/HomeView.vue'
+import MeetingDetailView from '@/views/meetings/MeetingDetailView.vue'
+import MeetingListView from '@/views/meetings/MeetingListView.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -18,7 +19,18 @@ export function createAppRouter(): Router {
       {
         path: '/',
         name: 'home',
-        component: HomeView,
+        redirect: { name: 'meetings' },
+      },
+      {
+        path: '/meetings',
+        name: 'meetings',
+        component: MeetingListView,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: '/meetings/:meetingId',
+        name: 'meeting-detail',
+        component: MeetingDetailView,
         meta: { requiresAuth: true },
       },
       {
@@ -42,7 +54,7 @@ export function createAppRouter(): Router {
       }
     }
     if (to.name === 'login' && authStore.isAuthenticated) {
-      return { name: 'home' }
+      return { name: 'meetings' }
     }
     return true
   })

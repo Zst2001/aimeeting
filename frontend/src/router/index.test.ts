@@ -21,15 +21,15 @@ describe('router authentication guard', () => {
     setActivePinia(createPinia())
   })
 
-  it('redirects unauthenticated users from home to login', async () => {
+  it('redirects unauthenticated users from the meeting list to login', async () => {
     const authStore = useAuthStore()
     authStore.initialized = true
     const appRouter = createAppRouter()
 
-    await appRouter.push('/')
+    await appRouter.push('/meetings')
 
     expect(appRouter.currentRoute.value.name).toBe('login')
-    expect(appRouter.currentRoute.value.query.redirect).toBe('/')
+    expect(appRouter.currentRoute.value.query.redirect).toBe('/meetings')
   })
 
   it('redirects an authenticated user away from login', async () => {
@@ -40,7 +40,29 @@ describe('router authentication guard', () => {
 
     await appRouter.push('/login')
 
-    expect(appRouter.currentRoute.value.name).toBe('home')
+    expect(appRouter.currentRoute.value.name).toBe('meetings')
+  })
+
+  it('marks the meeting detail route as protected', async () => {
+    const authStore = useAuthStore()
+    authStore.initialized = true
+    const appRouter = createAppRouter()
+
+    await appRouter.push('/meetings/99')
+
+    expect(appRouter.currentRoute.value.name).toBe('login')
+    expect(appRouter.currentRoute.value.query.redirect).toBe('/meetings/99')
+  })
+
+  it('redirects the normal root entry to the meeting list after authentication', async () => {
+    const authStore = useAuthStore()
+    authStore.initialized = true
+    authStore.user = authenticatedUser
+    const appRouter = createAppRouter()
+
+    await appRouter.push('/')
+
+    expect(appRouter.currentRoute.value.name).toBe('meetings')
   })
 
   it('only accepts same-origin redirect paths', () => {

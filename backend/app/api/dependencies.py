@@ -19,7 +19,12 @@ from app.core.security import TokenExpiredError, TokenInvalidError, decode_token
 from app.db.models.user import User, UserRole, UserStatus
 from app.db.session import get_db
 from app.repositories.user_repository import UserRepository
+from app.repositories.meeting_repository import MeetingRepository
+from app.repositories.participant_repository import ParticipantRepository
+from app.repositories.permission_repository import PermissionRepository
 from app.services.auth_service import AuthService
+from app.services.meeting_service import MeetingService
+from app.services.permission_service import PermissionService
 from app.services.refresh_session_service import RefreshSessionService
 
 
@@ -39,6 +44,17 @@ def get_auth_service(
     refresh_sessions: RefreshSessionService = Depends(get_refresh_session_service),
 ) -> AuthService:
     return AuthService(UserRepository(db), refresh_sessions)
+
+
+def get_meeting_service(db: Session = Depends(get_db)) -> MeetingService:
+    participant_repository = ParticipantRepository(db)
+    permission_repository = PermissionRepository(db)
+    return MeetingService(
+        meeting_repository=MeetingRepository(db),
+        participant_repository=participant_repository,
+        permission_repository=permission_repository,
+        permission_service=PermissionService(participant_repository, permission_repository),
+    )
 
 
 def get_current_user(

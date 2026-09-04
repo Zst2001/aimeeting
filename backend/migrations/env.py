@@ -6,7 +6,7 @@ from alembic import context
 
 from app.core.config import get_settings
 from app.db.base import Base
-from app.db.models import User  # noqa: F401
+from app.db.models import Meeting, MeetingParticipant, MeetingPermission, User  # noqa: F401
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

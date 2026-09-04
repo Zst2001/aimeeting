@@ -44,7 +44,7 @@ async function submit(): Promise<void> {
   try {
     await authStore.login({ username: form.username, password: form.password })
     const redirect = getSafeRedirectPath(route.query.redirect)
-    await router.replace(redirect ?? { name: 'home' })
+    await router.replace(redirect ?? { name: 'meetings' })
   } catch (error) {
     errorMessage.value = resolveErrorMessage(error)
     ElMessage.error(errorMessage.value)
