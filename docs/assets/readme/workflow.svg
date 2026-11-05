@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="664" viewBox="0 0 1100 664" role="img" aria-labelledby="title desc" lang="zh-CN">
+  <title id="title">会议访问与纪要生成流程</title>
+  <desc id="desc">Phase 2 已实现账号登录、按关系查询会议和详情查看。V1 规划中，主持人启用 AI、会议结束且云录制转写就绪后，系统将转写标准化，短会议直接生成，长会议分段提取再全局合并。校验通过后保存 AI 纪要版本。</desc>
+  <defs>
+    <marker id="green-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 1 9 5 1 9" fill="none" stroke="#428477" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="gold-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M1 1 9 5 1 9" fill="none" stroke="#A27540" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif; fill:#183B36 }
+      .ep { font:600 14px "Segoe UI",Arial,sans-serif; letter-spacing:2px; fill:#526A61 }
+      .title { font-size:36px; font-weight:700 }
+      .section { font-size:22px; font-weight:700 }
+      .name { font-size:24px; font-weight:700 }
+      .note { font-size:19px; fill:#475F57 }
+      .gold { fill:#805921 }
+      .ink { fill:#463D2D }
+      .gline { fill:none; stroke:#428477; stroke-width:2.5; marker-end:url(#green-arrow) }
+      .aline { fill:none; stroke:#A27540; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round }
+    </style>
+  </defs>
+  <rect x="1" y="1" width="1098" height="662" rx="22" fill="#F9F8F3" stroke="#DADCD1" stroke-width="2"/>
+  <g>
+    <path d="M39 37h11m-11 0v44m0 0h11" fill="none" stroke="#116B61" stroke-width="3.5"/>
+    <text x="64" y="49" class="ep">AI MEETING MINUTES</text>
+    <text x="62" y="88" class="title">会议访问与纪要生成流程</text>
+    <g transform="translate(956 42)" fill="none" stroke="#B9CBC1" stroke-width="2" stroke-linecap="round">
+      <path d="M7 19h34c8 0 9-13 18-13h32m-50 13c8 0 9 14 18 14h32"/>
+      <circle cx="4" cy="19" r="4" fill="#116B61" stroke="none"/>
+      <circle cx="94" cy="6" r="4" fill="#559587" stroke="none"/>
+      <circle cx="94" cy="33" r="4" fill="#B68B54" stroke="none"/>
+    </g>
+  </g>
+  <rect x="36" y="116" width="1028" height="179" rx="15" fill="#E9F2EC" stroke="#C4D8CE"/>
+  <rect x="55" y="134" width="80" height="30" rx="6" fill="#116B61"/>
+  <text x="95" y="155" text-anchor="middle" style="font-size:17px;font-weight:700;fill:white">已实现</text>
+  <text x="149" y="157" class="section">会议访问</text>
+  <text x="1043" y="155" text-anchor="end" class="ep">PHASE 02</text>
+  <g fill="#FFF" stroke="#CBDDD3">
+    <rect x="55" y="181" width="285" height="90" rx="10"/>
+    <rect x="384" y="181" width="315" height="90" rx="10"/>
+    <rect x="743" y="181" width="301" height="90" rx="10"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="197" y="218" class="name">账号登录</text>
+    <text x="197" y="248" class="note">验证身份，建立会话</text>
+    <text x="542" y="218" class="name">按关系查询会议</text>
+    <text x="542" y="248" class="note">主持 · 参会 · 获得分享</text>
+    <text x="894" y="218" class="name">查看会议详情</text>
+    <text x="894" y="248" class="note">主持人、参会者与权限</text>
+  </g>
+  <path class="gline" d="M346 226h30"/>
+  <path class="gline" d="M705 226h30"/>
+  <rect x="36" y="315" width="1028" height="318" rx="15" fill="#FAF2E3" stroke="#E2CFAC"/>
+  <rect x="55" y="333" width="80" height="30" rx="6" fill="#865B21"/>
+  <text x="95" y="354" text-anchor="middle" style="font-size:17px;font-weight:700;fill:white">规划中</text>
+  <text x="149" y="356" class="section ink">会后纪要生成</text>
+  <text x="1043" y="354" text-anchor="end" class="ep gold">V1 DESIGN</text>
+  <rect x="55" y="384" width="989" height="51" rx="9" fill="#FFF9EF" stroke="#DCC49C"/>
+  <path d="m78 409 6 6 11-12" fill="none" stroke="#805921" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="108" y="416" style="font-size:20px;font-weight:700" class="gold">启动条件</text>
+  <path d="M212 395v29" stroke="#DCC49C"/>
+  <text x="238" y="416" style="font-size:21px" class="ink">主持人启用 AI 纪要</text>
+  <text x="451" y="416" class="section gold">＋</text>
+  <text x="501" y="416" style="font-size:21px" class="ink">会议已结束</text>
+  <text x="638" y="416" class="section gold">＋</text>
+  <text x="687" y="416" style="font-size:21px" class="ink">腾讯会议云录制转写就绪</text>
+  <g class="aline">
+    <path d="M169 435v62" marker-end="url(#gold-arrow)"/>
+    <path d="M284 542h24q8 0 8-8v-37q0-8 8-8h26" marker-end="url(#gold-arrow)"/>
+    <path d="M308 542q8 0 8 8v24q0 8 8 8h26" marker-end="url(#gold-arrow)"/>
+    <path d="M585 489h30q8 0 8 8v37q0 8 8 8h26" marker-end="url(#gold-arrow)"/>
+    <path d="M585 582h30q8 0 8-8v-24q0-8 8-8"/>
+    <path d="M838 542h31" marker-end="url(#gold-arrow)"/>
+  </g>
+  <g fill="#FFFCF6" stroke="#DCC49C">
+    <rect x="55" y="505" width="229" height="74" rx="9"/>
+    <rect x="357" y="457" width="228" height="64" rx="9"/>
+    <rect x="357" y="550" width="228" height="64" rx="9"/>
+    <rect x="664" y="505" width="174" height="74" rx="9"/>
+  </g>
+  <rect x="876" y="505" width="168" height="74" rx="9" fill="#795726"/>
+  <g text-anchor="middle">
+    <text x="169" y="537" class="section ink">转写标准化</text>
+    <text x="169" y="563" class="note">说话人 · 时间轴 · 原文</text>
+    <text x="471" y="483" class="section ink">短会议</text>
+    <text x="471" y="508" class="note">单次生成结构化纪要</text>
+    <text x="471" y="576" class="section ink">长会议</text>
+    <text x="471" y="601" class="note">分段提取，再全局合并</text>
+    <text x="751" y="537" class="section ink">校验 JSON</text>
+    <text x="751" y="563" class="note">结构与业务规则</text>
+    <text x="960" y="537" class="section" style="fill:#FFF">保存纪要</text>
+    <text x="960" y="563" style="font-size:19px;fill:#FFF3D9">创建 AI 版本</text>
+  </g>
+</svg>

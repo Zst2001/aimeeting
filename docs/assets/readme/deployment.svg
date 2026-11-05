@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Phase 2 本地部署拓扑</title>
+  <desc id="desc">浏览器从宿主机 5173 端口访问 Vue 前端。Compose 网络内，Vite 将 API 和健康检查请求代理给 8000 端口的 FastAPI。后端使用 MySQL 8 保存用户、会议和权限，使用 Redis 7 保存刷新会话。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" viewBox="0 0 7 7">
+      <path d="M0 .5 6 3.5 0 6.5Z" fill="#116b61"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #18372f; }
+      .code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 16px; }
+      .section { font-size: 16px; font-weight: 600; letter-spacing: 1px; fill: #496359; }
+      .name { font-size: 25px; font-weight: 650; }
+      .detail { font-size: 18px; fill: #456056; }
+      .edge { stroke: #116b61; stroke-width: 2.5; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="1118" height="518" rx="20" fill="#fbfaf5" stroke="#dcded1" stroke-width="2"/>
+  <rect x="34" y="34" width="6" height="39" rx="3" fill="#116b61"/>
+  <text x="55" y="65" font-size="34" font-weight="700">本地部署拓扑</text>
+  <text x="1085" y="59" text-anchor="end" class="code" style="fill:#53675c">DOCKER COMPOSE  /  PHASE 2</text>
+  <path d="M34 96H1086" stroke="#d3dace"/>
+
+  <!-- The browser is on the host. The four service boxes sit inside the Compose network. -->
+  <rect x="220" y="122" width="866" height="325" rx="18" fill="#eef4ed" stroke="#9fb9aa" stroke-dasharray="6 5"/>
+  <text x="35" y="158" class="section">宿主机</text>
+  <text x="246" y="158" class="section">Compose 默认网络</text>
+
+  <g class="edge">
+    <path d="M191 292H245" marker-end="url(#arrow)"/>
+    <path d="M450 292H509" marker-end="url(#arrow)"/>
+    <path d="M727 292H763 M763 227V357"/>
+    <path d="M763 227H798" marker-end="url(#arrow)"/>
+    <path d="M763 357H798" marker-end="url(#arrow)"/>
+  </g>
+  <circle cx="763" cy="292" r="4.5" fill="#116b61"/>
+
+  <g>
+    <rect x="34" y="227" width="156" height="130" rx="12" fill="#fff" stroke="#bac8bb"/>
+    <g transform="translate(51 243)" stroke="#116b61" stroke-width="2" fill="none">
+      <rect width="31" height="24" rx="4"/>
+      <path d="M0 7H31"/>
+      <circle cx="5" cy="4" r="1" fill="#116b61" stroke="none"/>
+    </g>
+    <text x="50" y="303" class="name">浏览器</text>
+    <text x="50" y="333" class="code" style="font-size:14px">localhost:5173</text>
+  </g>
+  <g>
+    <rect x="247" y="211" width="202" height="162" rx="12" fill="#fff" stroke="#a3b7a8"/>
+    <text x="265" y="240" class="code" style="fill:#116b61">frontend:5173</text>
+    <text x="265" y="279" class="name">Vue 3 · Vite</text>
+    <path d="M265 295H430" stroke="#d4dfd5"/>
+    <text x="265" y="323" class="detail">登录与会议页面</text>
+    <text x="265" y="349" class="detail">同源请求代理</text>
+  </g>
+  <g>
+    <rect x="511" y="211" width="215" height="162" rx="12" fill="#154c43"/>
+    <text x="531" y="240" class="code" style="fill:#bde5d2">backend:8000</text>
+    <text x="531" y="279" class="name" style="fill:#fff">FastAPI</text>
+    <path d="M531 295H706" stroke="#4b7468"/>
+    <text x="531" y="323" class="detail" style="fill:#e7f4e9">身份认证与鉴权</text>
+    <text x="531" y="349" class="detail" style="fill:#e7f4e9">会议查询服务</text>
+  </g>
+  <g>
+    <rect x="800" y="176" width="262" height="103" rx="12" fill="#fff" stroke="#a3b7a8"/>
+    <text x="818" y="202" class="code" style="fill:#116b61">mysql:3306</text>
+    <text x="818" y="235" class="name">MySQL 8</text>
+    <text x="818" y="262" class="detail">用户、会议和权限关系</text>
+    <rect x="800" y="306" width="262" height="103" rx="12" fill="#fff" stroke="#a3b7a8"/>
+    <text x="818" y="332" class="code" style="fill:#116b61">redis:6379</text>
+    <text x="818" y="365" class="name">Redis 7</text>
+    <text x="818" y="392" class="detail">Refresh Token 会话</text>
+  </g>
+  <circle cx="42" cy="481" r="5" fill="#116b61"/>
+  <text x="58" y="488" font-size="18" fill="#435c52">MySQL 默认发布到宿主机 3307 端口，数据保存在 mysql_data 卷中。</text>
+</svg>
